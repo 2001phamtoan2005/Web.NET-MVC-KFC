@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QL_KFC" Class="KFCDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=MINHTOAN\SQLEXPRESS;Initial Catalog=QL_KFC;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QL_KFCConnectionString2" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.ACCOUNT_CUSTOMER" Member="ACCOUNT_CUSTOMERs">
+    <Type Name="ACCOUNT_CUSTOMER">
+      <Column Name="USERNAME_CUSTOMER" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PASSWORD_CUSTOMER" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ID_CUSTOMER" Type="System.String" DbType="Char(50) NOT NULL" CanBeNull="false" />
+      <Association Name="CUSTOMER_ACCOUNT_CUSTOMER" Member="CUSTOMER" ThisKey="ID_CUSTOMER" OtherKey="ID_CUSTOMER" Type="CUSTOMER" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RECEIPT" Member="RECEIPTs">
+    <Type Name="RECEIPT">
+      <Column Name="ID_RECEIPT" Type="System.String" DbType="Char(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ID_CUSTOMER" Type="System.String" DbType="Char(50)" CanBeNull="true" />
+      <Column Name="ORDER_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DELIVERY_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="STATUS_RECEIPT" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CODE_DISCOUNT" Type="System.String" DbType="Char(50)" CanBeNull="true" />
+      <Column Name="TOTAL" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Association Name="RECEIPT_DETAIL_RECEIPT" Member="DETAIL_RECEIPTs" ThisKey="ID_RECEIPT" OtherKey="ID_RECEIPT" Type="DETAIL_RECEIPT" />
+      <Association Name="CUSTOMER_RECEIPT" Member="CUSTOMER" ThisKey="ID_CUSTOMER" OtherKey="ID_CUSTOMER" Type="CUSTOMER" IsForeignKey="true" />
+      <Association Name="DISCOUNT_RECEIPT" Member="DISCOUNT" ThisKey="CODE_DISCOUNT" OtherKey="CODE_DISCOUNT" Type="DISCOUNT" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ACCOUNT_EMPLOYEE" Member="ACCOUNT_EMPLOYEEs">
+    <Type Name="ACCOUNT_EMPLOYEE">
+      <Column Name="USERNAME_EMPLOYEE" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PASSWORD_EMPLOYEE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ID_EMPLOYEE" Type="System.String" DbType="Char(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TYPE_ACCOUNT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="EMPLOYEE_ACCOUNT_EMPLOYEE" Member="EMPLOYEE" ThisKey="ID_EMPLOYEE" OtherKey="ID_EMPLOYEE" Type="EMPLOYEE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CART" Member="CARTs">
+    <Type Name="CART">
+      <Column Name="ID_PRODUCT" Type="System.String" DbType="Char(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ID_CUSTOMER" Type="System.String" DbType="Char(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IMAGE_PRODUCT" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NAME_PRODUCT" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="COST" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="QUANTITY_PRODUCT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TOTAL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DESCRIBE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="CUSTOMER_CART" Member="CUSTOMER" ThisKey="ID_CUSTOMER" OtherKey="ID_CUSTOMER" Type="CUSTOMER" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CATEGORY" Member="CATEGORies">
+    <Type Name="CATEGORY">
+      <Column Name="ID_CATEGORY" Type="System.String" DbType="Char(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NAME_CATEGORY" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="POSITION" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Association Name="CATEGORY_PRODUCT" Member="PRODUCTs" ThisKey="ID_CATEGORY" OtherKey="ID_CATEGORY" Type="PRODUCT" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CUSTOMER" Member="CUSTOMERs">
+    <Type Name="CUSTOMER">
+      <Column Name="ID_CUSTOMER" Type="System.String" DbType="Char(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NAME_CUSTOMER" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DATEOFBIRTH_CUSTOMER" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ADDRESS_CITY" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ADDRESS_DISTRICT" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ADDRESS_WARD" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ADDRESS_CUSTOMER" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PHONE_CUSTOMER" Type="System.String" DbType="Char(11)" CanBeNull="true" />
+      <Column Name="GMAIL" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="SEX_CUSTOMER" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Association Name="CUSTOMER_ACCOUNT_CUSTOMER" Member="ACCOUNT_CUSTOMERs" ThisKey="ID_CUSTOMER" OtherKey="ID_CUSTOMER" Type="ACCOUNT_CUSTOMER" />
+      <Association Name="CUSTOMER_RECEIPT" Member="RECEIPTs" ThisKey="ID_CUSTOMER" OtherKey="ID_CUSTOMER" Type="RECEIPT" />
+      <Association Name="CUSTOMER_CART" Member="CARTs" ThisKey="ID_CUSTOMER" OtherKey="ID_CUSTOMER" Type="CART" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DETAIL_RECEIPT" Member="DETAIL_RECEIPTs">
+    <Type Name="DETAIL_RECEIPT">
+      <Column Name="ID" Type="System.String" DbType="Char(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ID_RECEIPT" Type="System.String" DbType="Char(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ID_PRODUCT" Type="System.String" DbType="Char(50) NOT NULL" CanBeNull="false" />
+      <Column Name="QUANTITY" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="COST" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="RECEIPT_DETAIL_RECEIPT" Member="RECEIPT" ThisKey="ID_RECEIPT" OtherKey="ID_RECEIPT" Type="RECEIPT" IsForeignKey="true" />
+      <Association Name="PRODUCT_DETAIL_RECEIPT" Member="PRODUCT" ThisKey="ID_PRODUCT" OtherKey="ID_PRODUCT" Type="PRODUCT" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DISCOUNT" Member="DISCOUNTs">
+    <Type Name="DISCOUNT">
+      <Column Name="CODE_DISCOUNT" Type="System.String" DbType="Char(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PERCENT_DISCOUNT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MONEY_DISCOUNT" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="START_DAY" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="END_DAY" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="QUANTITY" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="DISCOUNT_RECEIPT" Member="RECEIPTs" ThisKey="CODE_DISCOUNT" OtherKey="CODE_DISCOUNT" Type="RECEIPT" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EMPLOYEE" Member="EMPLOYEEs">
+    <Type Name="EMPLOYEE">
+      <Column Name="ID_EMPLOYEE" Type="System.String" DbType="Char(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NAME_EMPLOYEE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DATEOFBIRTH_EMPLOYEE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ADDRESS_EMPLOYEE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PHONE_EMPLOYEE" Type="System.String" DbType="Char(11)" CanBeNull="true" />
+      <Column Name="GMAIL" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="SEX_EMPLOYEE" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Association Name="EMPLOYEE_ACCOUNT_EMPLOYEE" Member="ACCOUNT_EMPLOYEEs" ThisKey="ID_EMPLOYEE" OtherKey="ID_EMPLOYEE" Type="ACCOUNT_EMPLOYEE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PRODUCT" Member="PRODUCTs">
+    <Type Name="PRODUCT">
+      <Column Name="ID_PRODUCT" Type="System.String" DbType="Char(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NAME_PRODUCT" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="COST" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DESCRIBE" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IMAGE_PRODUCT" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ID_CATEGORY" Type="System.String" DbType="Char(50)" CanBeNull="true" />
+      <Association Name="PRODUCT_DETAIL_RECEIPT" Member="DETAIL_RECEIPTs" ThisKey="ID_PRODUCT" OtherKey="ID_PRODUCT" Type="DETAIL_RECEIPT" />
+      <Association Name="CATEGORY_PRODUCT" Member="CATEGORY" ThisKey="ID_CATEGORY" OtherKey="ID_CATEGORY" Type="CATEGORY" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
